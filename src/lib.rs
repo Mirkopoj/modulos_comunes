@@ -1,4 +1,4 @@
-type TcpMessage = [u8;1];
+pub type TcpMessage = [u8;1];
 
 #[derive(Copy, Clone)]
 pub struct DataStruct {
@@ -24,13 +24,7 @@ pub trait Convert {
 }
 impl Convert for DataStruct {
     fn to_bytes(&self) -> TcpMessage {
-        let mut bytes_ret: TcpMessage = [0;1];
-        if self.cinta      { bytes_ret[0] |= 0x01; };
-        if self.pogos      { bytes_ret[0] |= 0x02; };
-        if self.selector   { bytes_ret[0] |= 0x04; };
-        if self.sensor     { bytes_ret[0] |= 0x08; };
-
-        bytes_ret
+        to_bytes(*self)
     }
 }
 
