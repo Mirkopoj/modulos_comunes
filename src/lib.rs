@@ -1,4 +1,6 @@
-pub type TcpMessage = [u8;1];
+const TCPMESSAGELEN: usize = 1;
+pub type TcpMessage = [u8;TCPMESSAGELEN];
+pub const EMPTYTCPMESSAGE: TcpMessage = [0;TCPMESSAGELEN];
 
 #[derive(Copy, Clone)]
 pub struct DataStruct {
