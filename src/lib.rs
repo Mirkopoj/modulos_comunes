@@ -1,6 +1,6 @@
 use serde_derive::{Serialize, Deserialize};
 use serde_json;
-const TCPMESSAGELEN: usize = 1;
+const TCPMESSAGELEN: usize = 10;
 pub type TcpMessage = [u8;TCPMESSAGELEN];
 pub const EMPTYTCPMESSAGE: TcpMessage = [0;TCPMESSAGELEN];
 
@@ -12,6 +12,7 @@ pub struct DataStruct {
     pub selector: bool,
     pub sensor1: bool,
     pub sensor2: bool,
+    pub caracter: [u8;1],
 }
 
 pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
