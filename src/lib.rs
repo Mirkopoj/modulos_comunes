@@ -2,7 +2,7 @@ const TCPMESSAGELEN: usize = 1;
 pub type TcpMessage = [u8;TCPMESSAGELEN];
 pub const EMPTYTCPMESSAGE: TcpMessage = [0;TCPMESSAGELEN];
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone,PartialEq)]
 pub struct DataStruct {
     pub cinta: bool,
     pub pogos: bool,
