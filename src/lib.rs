@@ -15,7 +15,7 @@ pub struct DataStruct {
     pub caracter: [u8;1],
 }
 
-pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
+pub fn to_bytes(struct_in: DataStruct) -> String {
     //let mut bytes_ret: TcpMessage = [0;1];
     /*if struct_in.cinta1     { bytes_ret[0] |= 0x01; };
     if struct_in.cinta2     { bytes_ret[0] |= 0x02; };
@@ -26,16 +26,16 @@ pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
 
     //bytes_ret
 
-    serde_json::to_string(&struct_in).expect("Falló serde").as_bytes().try_into().expect("Falló serde2")
+    serde_json::to_string(&struct_in).expect("Falló serde")
 
 }
 
 pub trait Convert {
-    fn to_bytes(&self) -> TcpMessage;
+    fn to_bytes(&self) -> String;
     
 }
 impl Convert for DataStruct {
-    fn to_bytes(&self) -> TcpMessage {
+    fn to_bytes(&self) -> String {
         to_bytes(*self)
     }
 }
