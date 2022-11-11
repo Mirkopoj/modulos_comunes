@@ -13,6 +13,13 @@ pub struct DataStruct {
     pub caracter: char,
 }
 
+#[derive(PartialEq)]
+pub enum Estado {
+    Marcha,
+    Pausa,
+    Parado,
+}
+
 pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
     let mut bytes_ret: TcpMessage = [0;TCPMESSAGELEN];
     if struct_in.cinta1     { bytes_ret[0] |= 0x01; };
