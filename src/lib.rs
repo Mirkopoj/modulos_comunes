@@ -34,6 +34,12 @@ pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
     if struct_in.selector   { bytes_ret[0] |= 0x08; };
     if struct_in.sensor1    { bytes_ret[0] |= 0x10; };
     if struct_in.sensor2    { bytes_ret[0] |= 0x20; };
+
+    bytes_ret[0] |= match struct_in.estado {
+        Estado::Parado => { 0x00 },
+        Estado::Marcha => { 0x40 },
+        Estado::Pausa  => { 0x80 },
+    };
     
     bytes_ret[1] = struct_in.caracter as u8;
 
