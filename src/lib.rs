@@ -11,13 +11,19 @@ pub struct DataStruct {
     pub sensor1: bool,
     pub sensor2: bool,
     pub caracter: char,
+    pub estado: Estado,
 }
 
-#[derive(PartialEq)]
+#[derive(PartialEq, Clone, Copy)]
 pub enum Estado {
     Marcha,
     Pausa,
     Parado,
+}
+
+
+impl Default for Estado {
+    fn default() -> Self { Estado::Parado }
 }
 
 pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
@@ -52,7 +58,15 @@ pub fn from_bytes(bytes_in: &[u8]) -> DataStruct {
         selector:    (bytes_in[0] & 0x08) != 0 ,
         sensor1:     (bytes_in[0] & 0x10) != 0 ,
         sensor2:     (bytes_in[0] & 0x20) != 0 ,
-        caracter:    (bytes_in[1] as char)
+
+        estado:      match bytes_in[0] & 0xC0{
+            0x00 => { Estado::Parado },
+            0x40 => { Estado::Marcha },
+            0x80 => { Estado::Pausa },
+            _ => { Estado::Parado },
+        },
+
+        caracter:    bytes_in[1] as char
     };
 
     struct_ret
