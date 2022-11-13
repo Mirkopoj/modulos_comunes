@@ -14,7 +14,7 @@ pub struct DataStruct {
     pub estado: Estado,
 }
 
-#[derive(PartialEq, Clone, Copy)]
+#[derive(PartialEq, Clone, Copy, Debug)]
 pub enum Estado {
     Marcha,
     Pausa,
