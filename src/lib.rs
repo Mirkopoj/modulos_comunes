@@ -1,3 +1,4 @@
+use pruebas::TestData;
 const TCPMESSAGELEN: usize = 2;
 pub type TcpMessage = [u8;TCPMESSAGELEN];
 pub const EMPTYTCPMESSAGE: TcpMessage = [0;TCPMESSAGELEN];
@@ -12,6 +13,7 @@ pub struct DataStruct {
     pub sensor2: bool,
     pub caracter: char,
     pub estado: Estado,
+    pub pruebas: TestData,
 }
 
 #[derive(PartialEq, Clone, Copy, Debug)]
@@ -48,10 +50,20 @@ pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
 
 pub trait Convert {
     fn to_bytes(&self) -> TcpMessage;
-    
 }
+
 impl Convert for DataStruct {
     fn to_bytes(&self) -> TcpMessage {
+        to_bytes(*self)
+    }
+}
+
+pub trait ConvertTest {
+    fn to_bytes(&self) -> [u8;TESTDATALEN];
+}
+
+impl Convert for TestData {
+    fn to_bytes(&self) -> [u8;TESTDATALEN] {
         to_bytes(*self)
     }
 }
