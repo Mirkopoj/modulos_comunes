@@ -58,16 +58,6 @@ impl Convert for DataStruct {
     }
 }
 
-pub trait ConvertTest {
-    fn to_bytes(&self) -> [u8;TESTDATALEN];
-}
-
-impl Convert for TestData {
-    fn to_bytes(&self) -> [u8;TESTDATALEN] {
-        to_bytes(*self)
-    }
-}
-
 pub fn from_bytes(bytes_in: &[u8]) -> DataStruct {
     let struct_ret = DataStruct {
         cinta1:      (bytes_in[0] & 0x01) != 0 ,
