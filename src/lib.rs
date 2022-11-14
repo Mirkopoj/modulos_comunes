@@ -1,4 +1,4 @@
-use pruebas::{TestData, from_bytes};
+use pruebas::{TestData, from_bytes as from_bytes_test};
 const TCPMESSAGELEN: usize = 2;
 pub type TcpMessage = [u8;TCPMESSAGELEN];
 pub const EMPTYTCPMESSAGE: TcpMessage = [0;TCPMESSAGELEN];
@@ -76,7 +76,7 @@ pub fn from_bytes(bytes_in: &[u8]) -> DataStruct {
 
         caracter:    bytes_in[1] as char,
 
-        pruebas:    from_bytes(&bytes_in[2..]),
+        pruebas:    from_bytes_test(&bytes_in[2..]),
     };
 
     struct_ret
