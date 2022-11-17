@@ -1,5 +1,5 @@
-use pruebas::{TestData, from_bytes as from_bytes_test};
-const TCPMESSAGELEN: usize = 2;
+use pruebas::{TestData, from_bytes as from_bytes_test, ConvertTest, TESTDATALEN};
+const TCPMESSAGELEN: usize = 2+TESTDATALEN;
 pub type TcpMessage = [u8;TCPMESSAGELEN];
 pub const EMPTYTCPMESSAGE: TcpMessage = [0;TCPMESSAGELEN];
 
@@ -44,6 +44,8 @@ pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
     };
     
     bytes_ret[1] = struct_in.caracter as u8;
+
+    bytes_ret[2..].copy_from_slice(&struct_in.pruebas.to_bytes());
 
     bytes_ret
 }
