@@ -1,4 +1,5 @@
-use pruebas::{TestData, from_bytes as from_bytes_test, ConvertTest, TESTDATALEN};
+use pruebas::{TestData, from_bytes as from_bytes_test, TESTDATALEN};
+use pruebas::funciones_internas::ConvertTest;
 const TCPMESSAGELEN: usize = 2+TESTDATALEN;
 pub type TcpMessage = [u8;TCPMESSAGELEN];
 pub const EMPTYTCPMESSAGE: TcpMessage = [0;TCPMESSAGELEN];
