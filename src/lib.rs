@@ -26,7 +26,7 @@ pub enum Estado {
 
 
 impl Default for Estado {
-    fn default() -> Self { Estado::Parado }
+    fn default() -> Self { Estado::Marcha }
 }
 
 pub fn to_bytes(struct_in: DataStruct) -> TcpMessage {
